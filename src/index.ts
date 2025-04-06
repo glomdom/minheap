@@ -27,7 +27,7 @@ export default class MinHeap {
     const root = this.items[0];
 
     delete this.positions[root.key];
-    this.items[0] = this.items[this.items.size()];
+    this.items[0] = this.items[this.items.size() - 1];
 
     if (this.items[0] !== undefined) {
       this.positions[this.items[0].key] = 1;
