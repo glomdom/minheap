@@ -27,7 +27,7 @@ export default class MinHeap {
     } else {
       this.items.push({ key: key, priority: priority });
 
-      const index = this.items.size();
+      const index = this.items.size() - 1;
       this.positions[key] = index;
       this.siftUp(index);
     }
@@ -50,11 +50,11 @@ export default class MinHeap {
     this.items[0] = this.items[this.items.size() - 1];
 
     if (this.items[0] !== undefined) {
-      this.positions[this.items[0].key] = 1;
+      this.positions[this.items[0].key] = 0;
     }
 
     this.items.pop();
-    this.siftDown(1);
+    this.siftDown(0);
 
     return root.key;
   }
@@ -77,7 +77,7 @@ export default class MinHeap {
   private siftUp(index: number): void {
     if (index === 0) return;
 
-    const parent = math.floor(index / 2);
+    const parent = math.floor((index - 1) / 2);
     if (this.items[index].priority < this.items[parent].priority) {
       [this.items[index], this.items[parent]] = [this.items[parent], this.items[index]];
       this.positions[this.items[index].key] = index;
@@ -94,8 +94,8 @@ export default class MinHeap {
    * @param index The index to start sifting down from.
    */
   private siftDown(index: number): void {
-    const left = 2 * index;
-    const right = 2 * index + 1;
+    const left = 2 * index + 1;
+    const right = 2 * index + 2;
     let smallest = index;
 
     if (left < this.items.size() && this.items[left].priority < this.items[smallest].priority) {
