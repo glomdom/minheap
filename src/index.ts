@@ -75,7 +75,7 @@ export default class MinHeap {
    * @param index The index to start sifting up from.
    */
   private siftUp(index: number): void {
-    if (index === 1) return;
+    if (index === 0) return;
 
     const parent = math.floor(index / 2);
     if (this.items[index].priority < this.items[parent].priority) {
