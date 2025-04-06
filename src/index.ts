@@ -1,7 +1,19 @@
+/**
+ * Stores key-priority pairs and allows efficient retrieval
+ * and update of the element with the smallest priority.
+ */
 export default class MinHeap {
   private items: { key: string; priority: number }[] = [];
   private positions: { [key: string]: number } = {};
 
+  /**
+   * Inserts a key with the given priority into the heap.
+   * If the key already exists and the new priority is smaller,
+   * it updates the priority and repositions the element.
+   *
+   * @param key The unique identifier for the element.
+   * @param priority The priority associated with the key.
+   */
   public push(key: string, priority: number): void {
     if (this.positions[key] !== undefined) {
       const index = this.positions[key];
@@ -19,6 +31,12 @@ export default class MinHeap {
     }
   }
 
+  /**
+   * Removes and returns the key with the smallest priority.
+   * Returns `undefined` if the heap is empty.
+   *
+   * @returns The key with the minimum priority or `undefined`.
+   */
   public pop(): string | undefined {
     if (this.items.size() === 0) {
       return undefined;
@@ -39,10 +57,21 @@ export default class MinHeap {
     return root.key;
   }
 
+  /**
+   * Returns the number of elements in the heap.
+   *
+   * @returns The current size of the heap.
+   */
   public size(): number {
     return this.items.size();
   }
 
+  /**
+   * Moves the element at the given index up the heap
+   * until the heap property is restored.
+   *
+   * @param index The index to start sifting up from.
+   */
   private siftUp(index: number): void {
     if (index === 1) return;
 
@@ -56,6 +85,12 @@ export default class MinHeap {
     }
   }
 
+  /**
+   * Moves the element at the given index down the heap
+   * until the heap property is restored.
+   *
+   * @param index The index to start sifting down from.
+   */
   private siftDown(index: number): void {
     const left = 2 * index;
     const right = 2 * index + 1;
