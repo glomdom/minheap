@@ -1,3 +1,5 @@
+//!native
+
 /**
  * Stores key-priority pairs and allows efficient retrieval
  * and update of the element with the smallest priority.
