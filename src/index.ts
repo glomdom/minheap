@@ -69,6 +69,15 @@ export default class MinHeap {
   }
 
   /**
+   * Check's if the provided identifier exists in the heap.
+   * @param key The unique identifier of the element.
+   * @returns True if the element is in theh eap, false if it isn't.
+   */
+  public contains(key: string): boolean {
+    return this.positions[key] !== undefined;
+  }
+
+  /**
    * Moves the element at the given index up the heap
    * until the heap property is restored.
    *
